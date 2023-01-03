@@ -20,7 +20,7 @@ export const send = async (queue: string, teste_erro: boolean, exchange = 'logs'
         if (!teste_erro) {
             sendMessages(channel, queue, exchange);
         } else {
-            throw 'Falha no envio da mensagem!';
+            throw 'Error sending message!';
         }
     } catch (error) {
         console.log(error);
@@ -39,19 +39,3 @@ export const send = async (queue: string, teste_erro: boolean, exchange = 'logs'
         channel.publish(exchange, 'error', Buffer.from('message'), header);
     }
 };
-
-// async function send(req: Request, res: Response) {
-//     try {
-//         const connection: Connection = await createAmqpConnection();
-//         const channel: Channel = await createAmqpChannel(await connection);
-//         if (req.query.queue && req.query.msg) {
-//             await channel.assertQueue(req.query.queue.toString());
-//             sendMessage(channel, req.query.queue.toString(), req.query.msg.toString());
-//         }
-//         connection.close();
-//         res.send(`Send message ${req.query.queue}`);
-//     } catch (error) {
-//         console.log(error);
-//         res.send(error);
-//     }
-// }

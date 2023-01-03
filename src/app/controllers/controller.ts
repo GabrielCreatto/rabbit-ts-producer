@@ -8,5 +8,5 @@ export function sendMessage(req: Request, res: Response) {
     const teste_erro: boolean = req.query.teste_erro === 'true' ? true : false;
     send(fila, teste_erro);
 
-    res.send(`Mensagem enviada! Fila: ${fila}`);
+    res.send(`Sent message! Queue: ${fila}`);
 }
