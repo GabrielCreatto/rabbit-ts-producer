@@ -1,5 +1,7 @@
 import express, { Express, Router, Request, Response } from 'express';
-import router from '../controllers/controller';
+import { sendMessages } from '../controllers/controller';
+
+const router = express.Router();
 
 export async function init_routes() {
 
@@ -11,3 +13,5 @@ export async function init_routes() {
     console.log(`App startup! Listening on Port ${port}!`);
 
 }
+
+router.get('/send', sendMessages);
